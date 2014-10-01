@@ -1,0 +1,31 @@
+{
+  "name": "apeworm-abduction",
+  "version": "0.0.0",
+  "description": "Pronunciation game",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-wiredep": "^1.9.0",
+    "wiredep": "^1.8.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BYU-ODH/vocal-abduction.git"
+  },
+  "keywords": [
+    "vowels",
+    "pronunciation",
+    "game",
+    "webaudio"
+  ],
+  "author": "Office of Digital Humanities, BYU",
+  "license": "MPL 2.0",
+  "bugs": {
+    "url": "https://github.com/BYU-ODH/vocal-abduction/issues"
+  },
+  "homepage": "https://github.com/BYU-ODH/vocal-abduction"
+}

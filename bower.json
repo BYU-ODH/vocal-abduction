@@ -1,0 +1,36 @@
+{
+  "name": "apeworm-abduction",
+  "version": "0.0.0",
+  "homepage": "https://github.com/BYU-ODH/vocal-abduction",
+  "authors": [
+    "Office of Digital Humanities, BYU"
+  ],
+  "description": "Game for learning vowel pronunciation",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "game",
+    "phonetics",
+    "esl",
+    "language",
+    "education",
+    "voice",
+    "vowels"
+  ],
+  "license": "MPL 2.0",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "apeworm": "~0.0.2",
+    "pixi.js": "~1.6.1",
+    "numericjs": "~1.2.6",
+    "tinycolor": "~1.0.0"
+  }
+}

@@ -6,8 +6,13 @@
   "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-imagemagick": "^0.1.5",
+    "grunt-img": "^0.1.8",
+    "grunt-inkscape": "^0.1.1",
+    "grunt-shell": "^1.1.1",
+    "grunt-texturepacker": "webnard/grunt-texturepacker",
     "grunt-wiredep": "^1.9.0",
-    "wiredep": "^1.8.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -9,8 +9,7 @@
     "grunt-contrib-clean": "^0.6.0",
     "grunt-imagemagick": "^0.1.5",
     "grunt-img": "^0.1.8",
-    "grunt-inkscape": "^0.1.1",
-    "grunt-shell": "^1.1.1",
+    "grunt-responsive-images": "^0.1.4",
     "grunt-texturepacker": "webnard/grunt-texturepacker",
     "grunt-wiredep": "^1.9.0"
   },

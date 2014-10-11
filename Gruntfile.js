@@ -35,19 +35,6 @@ module.exports = function(grunt) {
         src: [BUILD_DIR + '<%= grunt.task.current.args[0] %>/*.png'],
       }
     },
-    'imagemagick-convert': {
-      shift2px: { // to make up for texturepacker's PNG oFFs chunk
-        args: [
-          SPRITE_DIR + '<%= grunt.task.current.args[0] %>/sheet.png',
-          '-virtual-pixel',
-          'background',
-          '-distort',
-          'Affine',
-          '2,2 4,4',
-          SPRITE_DIR + '<%= grunt.task.current.args[0] %>/sheet.png'
-        ]
-      }
-    },
     responsive_images: {
       sprites: {
         options: {
@@ -85,25 +72,23 @@ module.exports = function(grunt) {
       }
     },
     clean: {
-      build: [BUILD_DIR+'/*']
+      build: [BUILD_DIR+'/*'],
+      sprites: [SPRITE_DIR + '/*/sheet.{png,json}']
     }
   });
   grunt.loadNpmTasks('grunt-wiredep');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-texturepacker');
-  grunt.loadNpmTasks('grunt-imagemagick');
   grunt.loadNpmTasks('grunt-img');
   grunt.loadNpmTasks('grunt-responsive-images');
 
   grunt.registerTask('sprites',
     [
+      'clean:sprites',
       'responsive_images:sprites',
       'texturepacker:sprites:small',
       'texturepacker:sprites:medium',
       'texturepacker:sprites:large',
-      'imagemagick-convert:shift2px:small',
-      'imagemagick-convert:shift2px:medium',
-      'imagemagick-convert:shift2px:large',
       'img:sprites',
       'clean:build'
     ]

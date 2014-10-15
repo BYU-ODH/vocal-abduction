@@ -1,5 +1,8 @@
 define(['Saucer', 'Beam'], function(Saucer, Beam) {
   /**
+   * Events:
+   *  load - when the game has loaded
+   *
    * @param {Object=} options Configuration options
    * @param {VowelWorm.instance|Array.<VowelWorm.instance>} options.worms Any
    * VowelWorm instances to begin with
@@ -16,6 +19,8 @@ define(['Saucer', 'Beam'], function(Saucer, Beam) {
     "use strict";
 
     var game = this;
+    PIXI.EventTarget.call(game); // so we can dispatch events
+
     game.width = options.width || 700;
     game.height = options.height || 500;
     game.x1 = -1;
@@ -67,6 +72,7 @@ define(['Saucer', 'Beam'], function(Saucer, Beam) {
     var SPRITE_SHEET = new PIXI.SpriteSheetLoader(GRAPHICS_PATH + '/sheet.json');
     SPRITE_SHEET.addEventListener('loaded', function(){
       ready = true;
+      game.emit({type: 'load'});
     });
     SPRITE_SHEET.load();
 

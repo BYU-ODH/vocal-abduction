@@ -1,6 +1,39 @@
 <html>
 <head>
+  <style>
+    html, body {
+      padding: 0;
+      margin: 0;
+    }
+    #loading {
+      position: absolute;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: black;
+    }
+    #loading progress {
+      display: block;
+    }
+    #loading.ready progress {
+      display: none;
+    }
+    #readybtn {
+      display: none;
+    }
+    #loading.ready #readybtn {
+      display: block;
+    }
+  </style>
+</head>
 <body>
+<div id=loading>
+  <progress title=Loading... id=progressbar>Loading...</progress>
+  <button id=readybtn>Play</button>
+</div>
 
 <audio controls id=poem src="../../apeworm/examples/audio/vowels_ian.wav"></audio>
 <div id=board></div>

@@ -44,7 +44,7 @@ define(function() {
    */
   function Beam(options) {
     var _this = this,
-        _ship = new PIXI.Sprite.fromFrame('gaugeHeader.png'),
+        _ship = new PIXI.Sprite.fromFrame('purpleSaucer.png'),
         _beam = new PIXI.Sprite.fromFrame('tractorBeam.png'),
         _cow = new PIXI.Sprite.fromFrame('cowProfile.png'),
 

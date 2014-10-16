@@ -28,7 +28,7 @@ If you have questions, feel free to post an issue.
 All JavaScript classes should be wrapped in require.js callbacks and should 
 extend the DisplayObjectContainer class of PIXI.js. Here's a minimal example
 
-in a file called `app/js/FinglyFlangle`
+in a file called `app/js/FinglyFlangle.js`
 
 ```javascript
 define(function() {

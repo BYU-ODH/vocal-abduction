@@ -6,7 +6,7 @@ Pronunciation game using BYU-ODH/apeworm
 Development
 -------------
 
-*Requirements*:
+### Requirements
 
 * npm
 * bower
@@ -23,7 +23,7 @@ The index.html file is found under the `app/` directory.
 
 If you have questions, feel free to post an issue.
 
-*Making Display Objects*:
+### Making Display Objects:
 
 All JavaScript classes should be wrapped in require.js callbacks and should 
 extend the DisplayObjectContainer class of PIXI.js. Here's a minimal example

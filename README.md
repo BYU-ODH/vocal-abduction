@@ -16,6 +16,7 @@ Development
 To prepare assets, run the following commands:
 
 * `npm install` (install grunt dependencies)
+* `bower install` (install bower)
 * `grunt wiredep` (adds bower dependencies to index.html)
 * `grunt sprites` (creates spritesheet)
 

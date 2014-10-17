@@ -10,13 +10,13 @@ Development
 
 * npm
 * bower
-* grunt
 * [TexturePacker Command Line Tool](https://www.codeandweb.com/texturepacker/download) (should come with TexturePacker)
+* grunt-cli
 
 To prepare assets, run the following commands:
 
 * `npm install` (install grunt dependencies)
-* `bower install` (install bower)
+* `bower install` (install bower dependencies)
 * `grunt wiredep` (adds bower dependencies to index.html)
 * `grunt sprites` (creates spritesheet)
 

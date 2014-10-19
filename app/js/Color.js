@@ -4,8 +4,8 @@
  * @name Color
  */
 define({
+  PURPLE: 'purple',
   BLUE: 'blue',
-  MAROON: 'maroon' ,
-  TEAL: 'teal' ,
-  PURPLE: 'purple'
+  MAROON: 'maroon',
+  TEAL: 'teal'
 });

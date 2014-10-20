@@ -1,4 +1,4 @@
-define(['Saucer', 'Beam'], function(Saucer, Beam) {
+define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
   /**
    * @param {Object=} options Configuration options
    * @param {VowelWorm.instance|Array.<VowelWorm.instance>} options.worms Any
@@ -7,7 +7,10 @@ define(['Saucer', 'Beam'], function(Saucer, Beam) {
    * @param {number=} [options.height=500] The height of the game board
    * @param {number=} [options.background=0xFFFFFF] The background color of the game
    * @param {HTMLElement=} [options.element=document.body] What to append the graph to
-   * @param {string=} options.graphicsPath The path to the image assets
+   * @param {string=} [options.lang=eng] The three-letter language code for the game
+   * @param {HTMLElement=} options.consoleElement The element to put the console into
+   * @param {string=} options.spritePath The path to the image assets
+   * @param {string=} options.consoleGraphicsPath The path to the console.svg file
    * @param {string=} options.audioPath The path to the audio assets
    * @constructor
    * @name Game
@@ -15,7 +18,9 @@ define(['Saucer', 'Beam'], function(Saucer, Beam) {
   return function Game( options ) {
     "use strict";
 
-    var game = this;
+    var game     = this,
+        _console = null;
+
     game.width = options.width || 700;
     game.height = options.height || 500;
     game.x1 = -1;
@@ -42,7 +47,7 @@ define(['Saucer', 'Beam'], function(Saucer, Beam) {
      * @private
      * @const
      */
-    var GRAPHICS_PATH = options.graphicsPath || "";
+    var GRAPHICS_PATH = options.spritePath || "";
     
     /**
      * Where the audio files for the game are found
@@ -64,7 +69,7 @@ define(['Saucer', 'Beam'], function(Saucer, Beam) {
      * @const
      * @private
      */
-    var SPRITE_SHEET = new PIXI.SpriteSheetLoader(GRAPHICS_PATH + '/sheet.json');
+    var SPRITE_SHEET = new PIXI.SpriteSheetLoader(GRAPHICS_PATH + 'sheet.json');
     SPRITE_SHEET.addEventListener('loaded', function(){
       ready = true;
     });
@@ -112,6 +117,8 @@ define(['Saucer', 'Beam'], function(Saucer, Beam) {
 
       SPRITE_SHEET.addEventListener('loaded', function(){
         container.saucer = new Saucer();
+        
+        // TODO: change for multiplayer; only ever show player 1's beam
         container.beam = new Beam();
         game._stage.addChild(container.beam);
         container.beam.x = 0;
@@ -248,31 +255,35 @@ define(['Saucer', 'Beam'], function(Saucer, Beam) {
     };
 
     // CREATE GAME
-    var bgColor = options.background !== undefined ? options.background : 0xFFFFFF;
-    game._stage = new PIXI.Stage(bgColor);
-    game._renderer = PIXI.autoDetectRenderer(game.width, game.height);
-    try{
-      options.element.appendChild(game._renderer.view);
-    }catch(e){
-      document.body.appendChild(game._renderer.view);
-    }
-    drawVowels();
-    if(ipaEnabled) {
-      game._stage.addChild(ipaChart);
-    }
-    
-    if(options.worms) {
-      if(options.worms instanceof Array) {
-        options.worms.forEach(function(worm) {
-          game.addWorm(worm);
-        });
+    (function _init() {
+      var bgColor = options.background !== undefined ? options.background : 0xFFFFFF;
+      game._stage = new PIXI.Stage(bgColor);
+      game._renderer = PIXI.autoDetectRenderer(game.width, game.height);
+      try{
+        options.element.appendChild(game._renderer.view);
+      }catch(e){
+        document.body.appendChild(game._renderer.view);
       }
-      else
-      {
-        game.addWorm(options.worms);
+      drawVowels();
+      if(ipaEnabled) {
+        game._stage.addChild(ipaChart);
       }
-    }
-    game._renderer.render(game._stage);
-    game.play();
+      
+      if(options.worms) {
+        if(options.worms instanceof Array) {
+          options.worms.forEach(function(worm) {
+            game.addWorm(worm);
+          });
+        }
+        else
+        {
+          game.addWorm(options.worms);
+        }
+      };
+      _console = new Console(options.lang || 'eng', options.consoleGraphicsPath);
+      game._renderer.render(game._stage);
+      options.consoleElement.appendChild(_console.element);
+      game.play();
+    }());
   };
 });

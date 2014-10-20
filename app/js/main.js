@@ -7,6 +7,9 @@ require(['Game'], function(Game) {
   var game = new Game({
     worms: player,
     element: document.getElementById("board"),
-    graphicsPath: "assets/sprites/small"
+    spritePath: "assets/sprites/small/",
+    consoleGraphicsPath: "assets/sprites/",
+    consoleElement: document.getElementById('console'),
+    lang: 'eng'
   });
 });

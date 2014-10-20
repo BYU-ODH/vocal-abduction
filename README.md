@@ -12,6 +12,8 @@ Development
 * bower
 * [TexturePacker Command Line Tool](https://www.codeandweb.com/texturepacker/download) (should come with TexturePacker)
 * grunt-cli
+* ImageMagick
+* GraphicsMagick
 
 To prepare assets, run the following commands:
 

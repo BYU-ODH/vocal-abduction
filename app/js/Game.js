@@ -246,7 +246,7 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
           ["u",412.17314090483404,231.94657762575406]
         ];
         for(var i=0; i<letters.length; i++){
-          var letter = new PIXI.Text(letters[i][0],{font: "35px sans-serif", fill: "black", align: "center"});
+          var letter = new PIXI.Text(letters[i][0],{font: "bold 45px sans-serif", fill: "white", align: "center", stroke: "black", strokeThickness: 4});
           letter.position.x = letters[i][1];
           letter.position.y = letters[i][2];
           ipaChart.addChild(letter);
@@ -258,7 +258,7 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
     (function _init() {
       var bgColor = options.background !== undefined ? options.background : 0xFFFFFF;
       game._stage = new PIXI.Stage(bgColor);
-      game._renderer = PIXI.autoDetectRenderer(game.width, game.height);
+      game._renderer = PIXI.autoDetectRenderer(game.width, game.height, null, true);
       try{
         options.element.appendChild(game._renderer.view);
       }catch(e){

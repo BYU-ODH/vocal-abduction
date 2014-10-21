@@ -19,7 +19,8 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
     "use strict";
 
     var game     = this,
-        _console = null;
+        _console = new Console(options.lang || 'eng', options.consoleGraphicsPath),
+        _beam = null;
 
     game.width = options.width || 700;
     game.height = options.height || 500;
@@ -27,7 +28,7 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
     game.x2 = 2;
     game.y1 = -1;
     game.y2 = 3;
-    
+
     game.minHz = 300;
     game.maxHz = 8000;
     game.fb = 10;
@@ -41,14 +42,14 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
      * @type number
      */
     game.silence = -70;
-   
+
     /**
      * Where the graphics for the game are found
      * @private
      * @const
      */
     var GRAPHICS_PATH = options.spritePath || "";
-    
+
     /**
      * Where the audio files for the game are found
      * @private
@@ -70,8 +71,15 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
      * @private
      */
     var SPRITE_SHEET = new PIXI.SpriteSheetLoader(GRAPHICS_PATH + 'sheet.json');
+
+    // after the sprites and console have loaded, we just might be ready
+    // TODO: destroy callback hell
     SPRITE_SHEET.addEventListener('loaded', function(){
-      ready = true;
+      options.consoleElement.appendChild(_console.element);
+      _console.addEventListener('ready', function() {
+        _init();
+        ready = true;
+      });
     });
     SPRITE_SHEET.load();
 
@@ -89,8 +97,8 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
      * @name ipa
      */
     var ipaEnabled = true;
-   
-    var ipaChart = new PIXI.DisplayObjectContainer();  
+
+    var ipaChart = new PIXI.DisplayObjectContainer();
 
     /**
      * Begins animation of worms
@@ -99,6 +107,10 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
      */
     game.play = function(){
       if(ready) {
+        if(!_console.sound) {
+          _console.loadWord();
+          _console.startTimer();
+        }
         game.drawWorm();
       }
       window.requestAnimationFrame(game.play);
@@ -117,12 +129,6 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
 
       SPRITE_SHEET.addEventListener('loaded', function(){
         container.saucer = new Saucer();
-        
-        // TODO: change for multiplayer; only ever show player 1's beam
-        container.beam = new Beam();
-        game._stage.addChild(container.beam);
-        container.beam.x = options.width - container.beam.width;
-        container.beam.y = 0;
       });
     };
 
@@ -164,7 +170,7 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
             return;
           }
           ipaEnabled = bool;
-          
+
           if(ipaEnabled) {
             game._stage.addChild(ipaChart);
           }
@@ -176,7 +182,7 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
         }
       }
     });
-    
+
     var getCoords = function(worm){
       var buffer = worm.getFFT();
 
@@ -190,7 +196,7 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
         filterBanks: game.fb,
         fft: buffer
       });
-      
+
       if(position.length) {
         var x = position[1];
         var y = position[2];
@@ -202,8 +208,8 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
         return null;
       }
     };
-    
-    var adjustXAndY = function(x,y){    
+
+    var adjustXAndY = function(x,y){
       var xStart = game.x1;
       var xEnd = game.x2;
       var yStart = game.y1;
@@ -214,7 +220,7 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
 
       var adjustedX = (x-xStart)*xDist;
       var adjustedY = game.height-(y-yStart)*yDist;
-      
+
       return {x:adjustedX,y:adjustedY};
     };
 
@@ -255,7 +261,7 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
     };
 
     // CREATE GAME
-    (function _init() {
+    function _init() {
       var bgColor = options.background !== undefined ? options.background : 0xFFFFFF;
       game._stage = new PIXI.Stage(bgColor);
       game._renderer = PIXI.autoDetectRenderer(game.width, game.height, null, true);
@@ -268,7 +274,7 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
       if(ipaEnabled) {
         game._stage.addChild(ipaChart);
       }
-      
+
       if(options.worms) {
         if(options.worms instanceof Array) {
           options.worms.forEach(function(worm) {
@@ -280,10 +286,18 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
           game.addWorm(options.worms);
         }
       };
-      _console = new Console(options.lang || 'eng', options.consoleGraphicsPath);
+      _beam = new Beam();
+      _beam.x = options.width - _beam.width;
+      _beam.y = 0;
+
+      game._stage.addChild(_beam);
+
       game._renderer.render(game._stage);
-      options.consoleElement.appendChild(_console.element);
+
+      _beam.addEventListener('abduct', function(){
+        _console.loadWord();
+      });
       game.play();
-    }());
+    };
   };
 });

@@ -1,4 +1,4 @@
-define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
+define(['Saucer', 'Beam', 'Console', 'Marker'], function(Saucer, Beam, Console, Marker) {
   /**
    * @param {Object=} options Configuration options
    * @param {VowelWorm.instance|Array.<VowelWorm.instance>} options.worms Any
@@ -20,7 +20,8 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
 
     var game     = this,
         _console = new Console(options.lang || 'eng', options.consoleGraphicsPath),
-        _beam = null;
+        _beam = null,
+        _marker = null;
 
     game.width = options.width || 700;
     game.height = options.height || 500;
@@ -110,6 +111,13 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
         if(!_console.sound) {
           _console.loadWord();
           _console.startTimer();
+          
+          _marker = new Marker(_console.sound);
+          game._stage.addChild(_marker);
+
+          var coords = adjustXAndY(_marker.vowel_backness, _marker.vowel_height);
+          _marker.x = coords.x;
+          _marker.y = coords.y;
         }
         game.drawWorm();
       }
@@ -236,27 +244,6 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
       return true;
     };
 
-    /**
-     * Fills the IPA Chart. A constructor helper method.
-     */
-    var drawVowels = function() {
-      if(!ipaChart.children.length) {
-        var letters = [
-          ["e",221.28871891963863,252.35519027188354],
-          ["i",169.01833799969594,171.97765003235634],
-          ["a",317.6219414250667,337.00896411883406],
-          ["o",384.5714404194302,284.96641792056766],
-          ["u",412.17314090483404,231.94657762575406]
-        ];
-        for(var i=0; i<letters.length; i++){
-          var letter = new PIXI.Text(letters[i][0],{font: "bold 45px sans-serif", fill: "white", align: "center", stroke: "black", strokeThickness: 4});
-          letter.position.x = letters[i][1];
-          letter.position.y = letters[i][2];
-          ipaChart.addChild(letter);
-        }
-      }
-    };
-
     // CREATE GAME
     function _init() {
       var bgColor = options.background !== undefined ? options.background : 0xFFFFFF;
@@ -267,7 +254,6 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
       }catch(e){
         document.body.appendChild(game._renderer.view);
       }
-      drawVowels();
       if(ipaEnabled) {
         game._stage.addChild(ipaChart);
       }
@@ -293,6 +279,15 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
 
       _beam.addEventListener('abduct', function(){
         _console.loadWord();
+
+        game._stage.removeChild(_marker);
+
+        _marker = new Marker(_console.sound);
+        game._stage.addChild(_marker);
+
+        var coords = adjustXAndY(_marker.vowel_backness, _marker.vowel_height);
+        _marker.x = coords.x;
+        _marker.y = coords.y;
       });
       game.play();
     };

@@ -106,6 +106,7 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
       if(ready) {
         if(!_console.sound) {
           _console.loadWord();
+          _console.startTimer();
         }
         game.drawWorm();
       }
@@ -292,7 +293,7 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
       options.consoleElement.appendChild(_console.element);
 
       _console.addEventListener('timeend', function(){
-        setTimeout(_console.loadWord, 500);
+        _console.loadWord();
       });
       game.play();
     }());

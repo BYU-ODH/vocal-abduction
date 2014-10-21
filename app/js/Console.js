@@ -1,5 +1,5 @@
 define(['Corpus'], function(Corpus) {
-  var DEFAULT_TIME = 5,
+  var DEFAULT_TIME = 60,
       ONE_SECOND  = 1000,
       YELLOW      = '#ffef7b';
 
@@ -191,13 +191,15 @@ define(['Corpus'], function(Corpus) {
      * @name loadWord
      */
     _this.loadWord = function() {
-      _time = DEFAULT_TIME;
       _sound = _getRandomSound();
 
       var word  = _getRandomWord(_sound);
       _updateWord(word);
-      _updateTime(_time);
+    };
 
+    _this.startTimer = function() {
+      _time = DEFAULT_TIME;
+      _updateTime(_time);
       window.clearInterval(_timer);
       _timer = window.setInterval(_countdown, ONE_SECOND);
     };

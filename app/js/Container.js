@@ -25,7 +25,8 @@ define(function() {
     if(title !== undefined && title !== null) {
       _text = new PIXI.Text(title, {
         fill: WHITE,
-        font: 'bold 20px Fjalla One',
+        //font: 'bold 20px Fjalla One', // TODO: requires a bitmap font
+        font: 'bold 20px Arial',
         wordWrap: true,
         align: 'center'
       });

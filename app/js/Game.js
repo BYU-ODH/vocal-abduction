@@ -114,7 +114,7 @@ define(['Saucer', 'Beam'], function(Saucer, Beam) {
         container.saucer = new Saucer();
         container.beam = new Beam();
         game._stage.addChild(container.beam);
-        container.beam.x = 0;
+        container.beam.x = options.width - container.beam.width;
         container.beam.y = 0;
       });
     };

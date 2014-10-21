@@ -1,10 +1,10 @@
-define(function() {
+define(['Container', 'NumberStyle'], function(Container, NumberStyle) {
   /**
    * Percentage, between cow and ship, that the beam should end at
    * @const
    * @type number
    */
-  var MAX_BEAM_DISTANCE = 108;
+  var MAX_BEAM_DISTANCE = 100;
   /**
    * Percentage, between ship and cow, that the beam should start at
    * @const
@@ -61,8 +61,22 @@ define(function() {
          * If this is true, tractor beam will neither ascend nor descend.
          * The beam will pause momentarily when the cow has been hit.
          * @type boolean
+         * @private
          */
         _paused = false,
+
+        /**
+         * How many cows the user has retrieved
+         * @type number
+         * @name points
+         * @memberof Beam
+         */
+        _points = 0,
+
+        /**
+         * The holder for the points
+         */
+        _pointsText = new PIXI.Text(_points, NumberStyle),
 
         /**
          * A number between MIN_BEAM_DISTANCE and MAX_BEAM_DISTANCE, representing how close the beam is to the cow
@@ -109,25 +123,45 @@ define(function() {
     PIXI.DisplayObjectContainer.call(_this);
 
     function _init() {
+      var pad_x = 10;
+
       // tall enough to fit the cow, the ship, with room for the beam
-      var height = (_cow.height + _ship.height)*2.5;
-      
+
+      var box_width = _ship.width + pad_x;
+      var box_height = (_cow.height + _ship.height)*2.5 + 5;
+
+      var box = new Container('Cow Meter', box_width, box_height);
+
+      var height = box_height - box.textHeight;
+
+      _this.addChild(box);
+
       _cow.anchor.x = 0.5;
       _cow.y = height - _cow.height;
-      _cow.x = _ship.width/2;
-      _this.addChild(_cow);
+      _cow.x = box_width/2;
+
+      _ship.anchor.x = 0.5;
+      _ship.x = box_width/2;
+      _ship.y = box.textHeight;
 
       _beam.anchor.x = 0.5;
-      _beam.y = _ship.height - 25;
-      _beam.x = _ship.width/2;
+      _beam.y = _ship.y + _ship.height - 10;
+      _beam.x = box_width/2;
       _beam.height = 0;
       _beam.opacity = 0.7;
-      _this.addChild(_beam);
 
-      _maxBeamHeight = height - _cow.height - _ship.height;
-      
+      _maxBeamHeight = height - _cow.height - _beam.y;
+
+      _pointsText.y = _cow.y + _cow.height + 5;
+      _pointsText.x = box.width/2 - _pointsText.width/2 + box.getBounds().x;
+
       _this.addChild(_ship);
-      
+      _this.addChild(_beam);
+      _this.addChild(_cow);
+      _this.addChild(_pointsText);
+
+      window.t = _pointsText;
+
       Beam._index++;
 
       // so we can dispatch events (@see _retrieveCow)
@@ -147,12 +181,13 @@ define(function() {
       _distance = value;
       _beam.height = (_distance/100)*_maxBeamHeight;
     };
-    
+
     /**
      * Sets the speed of the tractor beam
      * @param number value A number, from 1 to 5, representing how fast the
      * tractor beam should move
      * @see speed
+     * @private
      */
     function _setSpeed(value) {
       var speed = _speeds[value];
@@ -163,6 +198,19 @@ define(function() {
       _speed = speed;
       _resetMotion();
     };
+
+    /**
+     * Sets the total score
+     * @see points
+     * @private
+     */
+    function _setPoints(points) {
+      if(isNaN(parseInt(points, 10))) {
+        return;
+      }
+      _points = points;;
+      _pointsText.setText(""+points);
+    }
 
     /**
      * Resets tractor beam's motion, which depends on whether or not the beam
@@ -224,7 +272,7 @@ define(function() {
     };
 
     /**
-     * Used when a beam hits the cow 
+     * Used when a beam hits the cow
      */
     function _retrieveCow() {
       _paused = true;
@@ -234,6 +282,7 @@ define(function() {
         _cow.tint = 0xFFFFFF;
         _paused = false;
         _setDistance(MIN_BEAM_DISTANCE);
+        _this.points++;
         _this.emit({type: 'abduct'});
       }, COW_GET_DELAY);
     };
@@ -252,6 +301,11 @@ define(function() {
         enumerable: true,
         get: function() { return _enabled; },
         set: _setEnabled
+      },
+      points: {
+        enumerable: true,
+        get: function() { return _points; },
+        set: _setPoints
       }
     });
 

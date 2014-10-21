@@ -121,7 +121,7 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
         // TODO: change for multiplayer; only ever show player 1's beam
         container.beam = new Beam();
         game._stage.addChild(container.beam);
-        container.beam.x = 0;
+        container.beam.x = options.width - container.beam.width;
         container.beam.y = 0;
       });
     };

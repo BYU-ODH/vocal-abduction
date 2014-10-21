@@ -4,3 +4,6 @@
 #console embed {
   width: 100%;
 }
+#grad {
+  background: linear-gradient(#B85C00, #291400);
+}

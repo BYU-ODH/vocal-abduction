@@ -1,4 +1,6 @@
-define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
+define(['Saucer', 'Beam', 'Console', 'Marker'],
+function(Saucer, Beam, Console, Marker) {
+
   /**
    * @param {Object=} options Configuration options
    * @param {VowelWorm.instance|Array.<VowelWorm.instance>} options.worms Any
@@ -202,7 +204,7 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
         return null;
       }
     };
-    
+   
     var adjustXAndY = function(x,y){    
       var xStart = game.x1;
       var xEnd = game.x2;
@@ -233,27 +235,6 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
       return true;
     };
 
-    /**
-     * Fills the IPA Chart. A constructor helper method.
-     */
-    var drawVowels = function() {
-      if(!ipaChart.children.length) {
-        var letters = [
-          ["e",221.28871891963863,252.35519027188354],
-          ["i",169.01833799969594,171.97765003235634],
-          ["a",317.6219414250667,337.00896411883406],
-          ["o",384.5714404194302,284.96641792056766],
-          ["u",412.17314090483404,231.94657762575406]
-        ];
-        for(var i=0; i<letters.length; i++){
-          var letter = new PIXI.Text(letters[i][0],{font: "35px sans-serif", fill: "black", align: "center"});
-          letter.position.x = letters[i][1];
-          letter.position.y = letters[i][2];
-          ipaChart.addChild(letter);
-        }
-      }
-    };
-
     // CREATE GAME
     (function _init() {
       var bgColor = options.background !== undefined ? options.background : 0xFFFFFF;
@@ -264,7 +245,6 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
       }catch(e){
         document.body.appendChild(game._renderer.view);
       }
-      drawVowels();
       if(ipaEnabled) {
         game._stage.addChild(ipaChart);
       }
@@ -281,6 +261,13 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
         }
       };
       _console = new Console(options.lang || 'eng', options.consoleGraphicsPath);
+
+      var marker = new Marker('iː');
+      var coords = adjustXAndY(marker.vowel_backness, marker.vowel_height);
+      marker.x = coords.x;
+      marker.y = coords.y;
+
+      game._stage.addChild(marker);
       game._renderer.render(game._stage);
       options.consoleElement.appendChild(_console.element);
       game.play();

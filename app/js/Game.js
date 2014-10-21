@@ -19,7 +19,8 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
     "use strict";
 
     var game     = this,
-        _console = new Console(options.lang || 'eng', options.consoleGraphicsPath);
+        _console = new Console(options.lang || 'eng', options.consoleGraphicsPath),
+        _beam = null;
 
     game.width = options.width || 700;
     game.height = options.height || 500;
@@ -74,7 +75,9 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
     // after the sprites and console have loaded, we just might be ready
     // TODO: destroy callback hell
     SPRITE_SHEET.addEventListener('loaded', function(){
+      options.consoleElement.appendChild(_console.element);
       _console.addEventListener('ready', function() {
+        _init();
         ready = true;
       });
     });
@@ -126,12 +129,6 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
 
       SPRITE_SHEET.addEventListener('loaded', function(){
         container.saucer = new Saucer();
-
-        // TODO: change for multiplayer; only ever show player 1's beam
-        container.beam = new Beam();
-        game._stage.addChild(container.beam);
-        container.beam.x = options.width - container.beam.width;
-        container.beam.y = 0;
       });
     };
 
@@ -264,7 +261,7 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
     };
 
     // CREATE GAME
-    (function _init() {
+    function _init() {
       var bgColor = options.background !== undefined ? options.background : 0xFFFFFF;
       game._stage = new PIXI.Stage(bgColor);
       game._renderer = PIXI.autoDetectRenderer(game.width, game.height, null, true);
@@ -289,13 +286,18 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
           game.addWorm(options.worms);
         }
       };
-      game._renderer.render(game._stage);
-      options.consoleElement.appendChild(_console.element);
+      _beam = new Beam();
+      _beam.x = options.width - _beam.width;
+      _beam.y = 0;
 
-      _console.addEventListener('timeend', function(){
+      game._stage.addChild(_beam);
+
+      game._renderer.render(game._stage);
+
+      _beam.addEventListener('abduct', function(){
         _console.loadWord();
       });
       game.play();
-    }());
+    };
   };
 });

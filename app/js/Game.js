@@ -126,10 +126,7 @@ define(['Saucer', 'Beam', 'Console'], function(Saucer, Beam, Console) {
       var container = {};
       container.worm = worm;
       worms.push(container);
-
-      SPRITE_SHEET.addEventListener('loaded', function(){
-        container.saucer = new Saucer();
-      });
+      container.saucer = new Saucer();
     };
 
     /**

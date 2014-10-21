@@ -1,6 +1,7 @@
 <html>
 <head>
   <style>
+
     html, body {
       padding: 0;
       margin: 0;
@@ -13,8 +14,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      background-image: url("assets/os.png");
+      background-position: center;
+      background-size: contain;
       background-color: black;
-    }
+      background-repeat: no-repeat;
+
+
+
+      }
     #loading progress {
       display: block;
     }
@@ -24,15 +32,40 @@
     #readybtn {
       display: none;
     }
+
+ @-webkit-keyframes playBtn {
+	0% {color: yellow; font-size:1.2em;}
+	50% {color: #32ff00; font-size:2em;}
+}
     #loading.ready #readybtn {
+	-webkit-animation: playBtn 2s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: ease-in-out;
+      margin-top: 15%;
       display: block;
+	color: yellow;
+	font-size:1.2em;
+	transition: all 1.5s;
+	text-transform:uppercase;
+	font-family: arial;
+	border:0;
     }
+
+
+ #loading.ready #readybtn:hover {
+	cursor:pointer;
+}
   </style>
 </head>
 <body>
 <div id=loading>
-  <progress title=Loading... id=progressbar>Loading...</progress>
-  <button id=readybtn>Play</button>
+
+  <div id=readybtn><strong>Play</strong>
+</div>
+ </div>
+
+
+
 </div>
 
 <audio controls id=poem src="../../apeworm/examples/audio/vowels_ian.wav"></audio>

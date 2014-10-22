@@ -1,5 +1,8 @@
 define(['Saucer', 'Beam', 'Console', 'Marker'], function(Saucer, Beam, Console, Marker) {
   /**
+   * Events:
+   *  load - when the game has loaded
+   *
    * @param {Object=} options Configuration options
    * @param {VowelWorm.instance|Array.<VowelWorm.instance>} options.worms Any
    * VowelWorm instances to begin with
@@ -9,7 +12,7 @@ define(['Saucer', 'Beam', 'Console', 'Marker'], function(Saucer, Beam, Console, 
    * @param {HTMLElement=} [options.element=document.body] What to append the graph to
    * @param {string=} [options.lang=eng] The three-letter language code for the game
    * @param {HTMLElement=} options.consoleElement The element to put the console into
-   * @param {string=} options.spritePath The path to the image assets
+   * @param {string=} options.graphicsPath The path to the image assets
    * @param {string=} options.consoleGraphicsPath The path to the console.svg file
    * @param {string=} options.audioPath The path to the audio assets
    * @constructor
@@ -23,6 +26,7 @@ define(['Saucer', 'Beam', 'Console', 'Marker'], function(Saucer, Beam, Console, 
         _beam = null,
         _marker = null;
 
+    PIXI.EventTarget.call(game); // so we can dispatch events
     game.width = options.width || 700;
     game.height = options.height || 500;
     game.x1 = -1;
@@ -50,7 +54,7 @@ define(['Saucer', 'Beam', 'Console', 'Marker'], function(Saucer, Beam, Console, 
      * @private
      * @const
      */
-    var GRAPHICS_PATH = options.spritePath || "";
+    var GRAPHICS_PATH = options.graphicsPath || "";
 
     /**
      * Where the audio files for the game are found
@@ -81,6 +85,7 @@ define(['Saucer', 'Beam', 'Console', 'Marker'], function(Saucer, Beam, Console, 
       _console.addEventListener('ready', function() {
         _init();
         ready = true;
+        game.emit({type: 'load'});
       });
     });
     SPRITE_SHEET.load();

@@ -21,6 +21,7 @@ require(['Game'], function(Game) {
     loading.classList.add('ready');
     readybtn.addEventListener('click', function() {
       document.body.removeChild(loading);
+      game.play();
     });
   });
 });

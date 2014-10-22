@@ -303,7 +303,6 @@ define(['Saucer', 'Beam', 'Console', 'Marker'], function(Saucer, Beam, Console, 
         _marker.x = coords.x;
         _marker.y = coords.y;
       });
-      game.play();
     };
   };
 });

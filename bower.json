@@ -28,7 +28,7 @@
     "tests"
   ],
   "dependencies": {
-    "apeworm": "git://github.com/BYU-ODH/apeworm#63151468b8a763166768e54ca7af4176060845d7",
+    "apeworm": "git://github.com/BYU-ODH/apeworm#f5795904c85f47ca57af943f4ddf400507f66d40",
     "pixi.js": "~1.6.1",
     "numericjs": "~1.2.6",
     "requirejs": "~2.1.15"

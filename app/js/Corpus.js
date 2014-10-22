@@ -5,13 +5,13 @@
  */
 define({
   'eng': {
-    'iː': [
+    'i': [
       'seed',
       'feel',
       'mean',
       'sea'
     ],
-    'eɪ': [
+    'e': [
       'made',
       'fail',
       'vein',

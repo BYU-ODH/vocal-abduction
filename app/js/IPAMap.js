@@ -12,5 +12,6 @@
  * @TODO: This is really inaccurate
  */
 define({
-  'iː': [-0.4, 1.2]
+  'i': [0.45, 2],
+  'e': [0.8, 1.9]
 });

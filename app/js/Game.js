@@ -30,9 +30,10 @@ define(['Saucer', 'Beam', 'Console', 'Marker'], function(Saucer, Beam, Console, 
     game.y1 = -1;
     game.y2 = 3;
 
-    game.minHz = 300;
+    game.minHz = 0;
     game.maxHz = 8000;
-    game.fb = 10;
+    game.filterbanks = 40;
+    game.coefficients = 25;
 
     /**
      * Represents the threshold in dB that VowelWorm's audio should be at in
@@ -150,11 +151,20 @@ define(['Saucer', 'Beam', 'Console', 'Marker'], function(Saucer, Beam, Console, 
           if(container.saucer && game._stage.children.indexOf(container.saucer) !== -1) {
             game._stage.removeChild(container.saucer);
           }
+          _beam.active = false;
           return;
         }
 
         if(game._stage.children.indexOf(container.saucer) === -1) {
           game._stage.addChild(container.saucer);
+        }
+
+        if(worm.estimateVowels(coords.origX, coords.origY).indexOf(_console.sound) !== -1) {
+          _beam.active = true;
+        }
+        else
+        {
+          _beam.active = false;
         }
 
         container.saucer.position.x = coords.x;
@@ -195,19 +205,18 @@ define(['Saucer', 'Beam', 'Console', 'Marker'], function(Saucer, Beam, Console, 
         return null;
       }
 
-      var position = worm.getMFCCs({
+      var mfccs = worm.getMFCCs({
         minFreq: game.minHz,
         maxFreq: game.maxHz,
-        filterBanks: game.fb,
+        filterBanks: game.filterbanks,
         fft: buffer
       });
 
-      if(position.length) {
-        var x = position[1];
-        var y = position[2];
+      if(mfccs.length) {
+        mfccs = mfccs.slice(0,game.coefficients);
+        var position = window.VowelWorm.normalize(mfccs, window.VowelWorm.Normalization.regression);
 
-        //Pass in coords flipped 90 degrees
-        var coords = adjustXAndY(y,-x);
+        var coords = adjustXAndY(position[0],position[1]);
         return coords;
       }else{
         return null;
@@ -226,7 +235,7 @@ define(['Saucer', 'Beam', 'Console', 'Marker'], function(Saucer, Beam, Console, 
       var adjustedX = (x-xStart)*xDist;
       var adjustedY = game.height-(y-yStart)*yDist;
 
-      return {x:adjustedX,y:adjustedY};
+      return {origX: x, origY: y, x:adjustedX,y:adjustedY};
     };
 
     /**

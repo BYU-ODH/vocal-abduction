@@ -1,0 +1,46 @@
+{
+  "name": "apeworm",
+  "homepage": "https://byu-odh.github.io/apeworm",
+  "authors": [
+    "Office of Digital Humanities, BYU"
+  ],
+  "description": "Realtime vowel recognition in the browser",
+  "main": "src/vowelworm.js",
+  "keywords": [
+    "vowelworm",
+    "apeworm",
+    "vowel",
+    "recognition",
+    "mfcc",
+    "fft",
+    "webaudio",
+    "microphone",
+    "savitzky",
+    "golay",
+    "mel",
+    "frequency",
+    "cepstrum",
+    "cepstral",
+    "audio",
+    "wave"
+  ],
+  "dependencies": {
+    "numericjs": "1.2.6"
+  },
+  "license": "MPL 2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "f5795904c8",
+  "_resolution": {
+    "type": "commit",
+    "commit": "f5795904c85f47ca57af943f4ddf400507f66d40"
+  },
+  "_source": "git://github.com/BYU-ODH/apeworm.git",
+  "_target": "f5795904c85f47ca57af943f4ddf400507f66d40",
+  "_originalSource": "git://github.com/BYU-ODH/apeworm"
+}

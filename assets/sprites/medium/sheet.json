@@ -1,0 +1,165 @@
+{"frames": {
+
+"blueCircle.png":
+{
+	"frame": {"x":129,"y":321,"w":125,"h":125},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":125,"h":125},
+	"sourceSize": {"w":125,"h":125},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"blueGlow.png":
+{
+	"frame": {"x":2,"y":67,"w":119,"h":119},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":119},
+	"sourceSize": {"w":119,"h":119},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"blueSaucer.png":
+{
+	"frame": {"x":2,"y":697,"w":225,"h":125},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":225,"h":125},
+	"sourceSize": {"w":225,"h":125},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"cow.png":
+{
+	"frame": {"x":41,"y":2,"w":125,"h":63},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":125,"h":63},
+	"sourceSize": {"w":125,"h":63},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"cowProfile.png":
+{
+	"frame": {"x":2,"y":575,"w":194,"h":120},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":194,"h":120},
+	"sourceSize": {"w":194,"h":120},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"maroonBeam.png":
+{
+	"frame": {"x":2,"y":1078,"w":225,"h":125},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":225,"h":125},
+	"sourceSize": {"w":225,"h":125},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"maroonCircle.png":
+{
+	"frame": {"x":129,"y":448,"w":125,"h":125},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":125,"h":125},
+	"sourceSize": {"w":125,"h":125},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"maroonGlow.png":
+{
+	"frame": {"x":2,"y":448,"w":125,"h":125},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":125,"h":125},
+	"sourceSize": {"w":125,"h":125},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"maroonSaucer.png":
+{
+	"frame": {"x":2,"y":1205,"w":225,"h":125},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":225,"h":125},
+	"sourceSize": {"w":225,"h":125},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"pupleGlow.png":
+{
+	"frame": {"x":129,"y":194,"w":125,"h":125},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":125,"h":125},
+	"sourceSize": {"w":125,"h":125},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"purpleBeam.png":
+{
+	"frame": {"x":2,"y":1332,"w":223,"h":170},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":223,"h":170},
+	"sourceSize": {"w":223,"h":170},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"purpleCircle.png":
+{
+	"frame": {"x":123,"y":67,"w":125,"h":125},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":125,"h":125},
+	"sourceSize": {"w":125,"h":125},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"purpleSaucer.png":
+{
+	"frame": {"x":2,"y":951,"w":225,"h":125},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":225,"h":125},
+	"sourceSize": {"w":225,"h":125},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"tealCircle.png":
+{
+	"frame": {"x":2,"y":194,"w":125,"h":125},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":125,"h":125},
+	"sourceSize": {"w":125,"h":125},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"tealGlow.png":
+{
+	"frame": {"x":2,"y":321,"w":125,"h":125},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":125,"h":125},
+	"sourceSize": {"w":125,"h":125},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"tealSaucer.png":
+{
+	"frame": {"x":2,"y":824,"w":225,"h":125},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":225,"h":125},
+	"sourceSize": {"w":225,"h":125},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"tractorBeam.png":
+{
+	"frame": {"x":2,"y":2,"w":37,"h":6},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":37,"h":6},
+	"sourceSize": {"w":37,"h":6},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "sheet.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":1504},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:46908162a80d506e71a83ba06b865b3b:84b953849b3881c4dfda8ca1253d800f:9c44ecd7e9a522007eaff2949095bc1d$"
+}
+}

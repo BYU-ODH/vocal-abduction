@@ -1,0 +1,79 @@
+<html>
+<head>
+<link rel=stylesheet type=text/css href=css/reset.css>
+<link rel=stylesheet type=text/css href=css/main.css>
+<link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+  <style>
+
+    html, body {
+      padding: 0;
+      margin: 0;
+    }
+    #loading {
+      position: absolute;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url("assets/os.png");
+      background-position: center;
+      background-size: contain;
+      background-color: black;
+      background-repeat: no-repeat;
+
+
+
+      }
+    #loading progress {
+      display: block;
+    }
+    #loading.ready progress {
+      display: none;
+    }
+    #readybtn {
+      display: none;
+    }
+
+ @-webkit-keyframes playBtn {
+	0% {color: yellow; font-size:1.2em;}
+	50% {color: #32ff00; font-size:2em;}
+}
+    #loading.ready #readybtn {
+	-webkit-animation: playBtn 2s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: ease-in-out;
+      margin-top: 15%;
+      display: block;
+	color: yellow;
+	font-size:1.2em;
+	transition: all 1.5s;
+	text-transform:uppercase;
+	font-family: arial;
+	border:0;
+    }
+
+
+ #loading.ready #readybtn:hover {
+	cursor:pointer;
+}
+  </style>
+
+<body id=grad>
+<div id=loading>
+  <div id=readybtn><strong>Play</strong></div>
+</div>
+
+<div id=board></div>
+<div id=console></div>
+
+<script src="bower_components/numericjs/src/numeric.js"></script>
+<!-- bower:js -->
+<script src="bower_components/apeworm/src/vowelworm.js"></script>
+<script src="bower_components/pixi.js/bin/pixi.js"></script>
+<script src="bower_components/requirejs/require.js"></script>
+<!-- endbower -->
+<script src="js/main.js"></script>

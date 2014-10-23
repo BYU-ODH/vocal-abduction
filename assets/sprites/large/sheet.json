@@ -1,0 +1,165 @@
+{"frames": {
+
+"blueCircle.png":
+{
+	"frame": {"x":1059,"y":2,"w":167,"h":167},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":167,"h":167},
+	"sourceSize": {"w":167,"h":167},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"blueGlow.png":
+{
+	"frame": {"x":54,"y":2,"w":158,"h":158},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":158,"h":158},
+	"sourceSize": {"w":158,"h":158},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"blueSaucer.png":
+{
+	"frame": {"x":301,"y":171,"w":300,"h":167},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":300,"h":167},
+	"sourceSize": {"w":300,"h":167},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"cow.png":
+{
+	"frame": {"x":1228,"y":2,"w":167,"h":83},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":167,"h":83},
+	"sourceSize": {"w":167,"h":83},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"cowProfile.png":
+{
+	"frame": {"x":1566,"y":2,"w":258,"h":160},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":258,"h":160},
+	"sourceSize": {"w":258,"h":160},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"maroonBeam.png":
+{
+	"frame": {"x":1207,"y":171,"w":300,"h":167},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":300,"h":167},
+	"sourceSize": {"w":300,"h":167},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"maroonCircle.png":
+{
+	"frame": {"x":1397,"y":2,"w":167,"h":167},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":167,"h":167},
+	"sourceSize": {"w":167,"h":167},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"maroonGlow.png":
+{
+	"frame": {"x":890,"y":2,"w":167,"h":167},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":167,"h":167},
+	"sourceSize": {"w":167,"h":167},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"maroonSaucer.png":
+{
+	"frame": {"x":1509,"y":171,"w":300,"h":167},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":300,"h":167},
+	"sourceSize": {"w":300,"h":167},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"pupleGlow.png":
+{
+	"frame": {"x":214,"y":2,"w":167,"h":167},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":167,"h":167},
+	"sourceSize": {"w":167,"h":167},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"purpleBeam.png":
+{
+	"frame": {"x":2,"y":171,"w":297,"h":227},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":297,"h":227},
+	"sourceSize": {"w":297,"h":227},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"purpleCircle.png":
+{
+	"frame": {"x":383,"y":2,"w":167,"h":167},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":167,"h":167},
+	"sourceSize": {"w":167,"h":167},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"purpleSaucer.png":
+{
+	"frame": {"x":905,"y":171,"w":300,"h":167},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":300,"h":167},
+	"sourceSize": {"w":300,"h":167},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"tealCircle.png":
+{
+	"frame": {"x":552,"y":2,"w":167,"h":167},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":167,"h":167},
+	"sourceSize": {"w":167,"h":167},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"tealGlow.png":
+{
+	"frame": {"x":721,"y":2,"w":167,"h":167},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":167,"h":167},
+	"sourceSize": {"w":167,"h":167},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"tealSaucer.png":
+{
+	"frame": {"x":603,"y":171,"w":300,"h":167},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":300,"h":167},
+	"sourceSize": {"w":300,"h":167},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"tractorBeam.png":
+{
+	"frame": {"x":2,"y":2,"w":50,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":8},
+	"sourceSize": {"w":50,"h":8},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "sheet.png",
+	"format": "RGBA8888",
+	"size": {"w":1826,"h":400},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:b9080117e1f6f480a889bbe3915dfe73:67eb4bec387a04ed02e837a0a42caf1b:9c44ecd7e9a522007eaff2949095bc1d$"
+}
+}

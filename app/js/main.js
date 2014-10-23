@@ -2,11 +2,17 @@ requirejs.config({
   baseUrl: 'js'
 });
 
+/**
+ * Polyfill for getUserMedia
+ */
+function getUserMedia() {
+  (navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia
+          || function(){alert('getUserMedia missing')}).apply(navigator, arguments);
+}
+
 require(['Game'], function(Game) {
-  var player = new VowelWorm.instance(document.getElementById("poem"));
   var game = new Game({
     width: document.body.getBoundingClientRect().width,
-    worms: player,
     element: document.getElementById("board"),
     graphicsPath: "assets/sprites/small/",
     consoleGraphicsPath: "assets/sprites/",
@@ -20,8 +26,15 @@ require(['Game'], function(Game) {
 
     loading.classList.add('ready');
     readybtn.addEventListener('click', function() {
-      document.body.removeChild(loading);
-      game.play();
+      getUserMedia({audio: true}, function sucess(stream) {
+        var worm = new window.VowelWorm.instance(stream);
+        game.addWorm(worm);
+
+        document.body.removeChild(loading);
+        game.play();
+      }, function failure() {
+        alert("There was an error retrieving microphone input.");
+      });
     });
   });
 });

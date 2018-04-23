@@ -14,6 +14,9 @@ Development
 * grunt-cli
 * ImageMagick
 * GraphicsMagick
+* sudo apt-get install optipng
+* sudo apt-get install jpegtran
+* sudo apt-get install libjpeg-progs
 
 To prepare assets, run the following commands:
 

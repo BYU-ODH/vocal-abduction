@@ -3,6 +3,8 @@ vocal-abduction
 
 Pronunciation game using BYU-ODH/apeworm
 
+Play in Google Chrome here: http://byu-odh.github.io/vocal-abduction/
+
 Development
 -------------
 
